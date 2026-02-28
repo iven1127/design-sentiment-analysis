@@ -18,3 +18,14 @@ htmlcov/
 data/
 models/
 .env
+.playwright/
+.streamlit/
+*.pth
+*.pt
+*.ckpt
+*.bin
+.vscode/
+.idea/
+*.swp
+*.swp
+Thumbs.db
