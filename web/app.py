@@ -9,7 +9,7 @@ import pandas as pd
 
 # 配置页面
 st.set_page_config(
-    page_title="小红书情感分析工具",
+    page_title="设计舆情分析工具",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -131,7 +131,7 @@ def analyze_text(title: str, content: str) -> Dict:
 
 def render_header():
     """渲染页面标题"""
-    st.markdown('<div class="main-header">📊 小红书情感分析工具</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-header">📊 设计舆情分析工具</div>', unsafe_allow_html=True)
     st.markdown("---")
 
 

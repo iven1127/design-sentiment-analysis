@@ -298,7 +298,7 @@ def cmd_clean(args):
 def main():
     """主函数"""
     parser = argparse.ArgumentParser(
-        description="小红书情感分析工具",
+        description="设计舆情分析工具",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 示例:

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设计舆情分析工具 - 测试页面</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        h1 { text-align: center; margin-bottom: 30px; }
+        .status { padding: 15px; margin: 20px 0; border-radius: 8px; }
+        .success { background: rgba(76, 175, 80, 0.3); }
+        .error { background: rgba(244, 67, 54, 0.3); }
+        .warning { background: rgba(255, 152, 0, 0.3); }
+        button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        button:hover { transform: scale(1.05); }
+        .info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        a { color: #fff; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 设计舆情分析工具</h1>
+
+        <div class="info">
+            <h3>🚀 快速启动指南</h3>
+            <ol>
+                <li>打开命令提示符 (CMD) 或 PowerShell</li>
+                <li>运行命令：<code>cd C:\Users\zhangxiaowei\xhs-sentiment-analyzer</code></li>
+                <li>运行命令：<code>python -m streamlit run web/app.py</code></li>
+                <li>访问：<a href="http://localhost:8501" target="_blank">http://localhost:8501</a></li>
+            </ol>
+        </div>
+
+        <div id="status" class="status warning">
+            <strong>⏳ 正在检测服务状态...</strong>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="checkAPI()">🔍 检测 API 服务</button>
+            <button onclick="checkWeb()">🌐 检测 Web 服务</button>
+            <button onclick="window.location.href='http://localhost:8501'">🚀 打开 Web 界面</button>
+        </div>
+
+        <div class="info" style="margin-top: 30px;">
+            <h3>📖 项目信息</h3>
+            <ul>
+                <li><strong>项目路径：</strong>C:\Users\zhangxiaowei\xhs-sentiment-analyzer</li>
+                <li><strong>Web 界面：</strong><a href="http://localhost:8501" target="_blank">http://localhost:8501</a></li>
+                <li><strong>API 文档：</strong><a href="http://localhost:8000/docs" target="_blank">http://localhost:8000/docs</a></li>
+            </ul>
+        </div>
+
+        <div class="info">
+            <h3>❓ 常见问题</h3>
+            <ul>
+                <li><strong>端口被占用：</strong>关闭占用 8501 端口的程序</li>
+                <li><strong>依赖缺失：</strong>运行 <code>pip install -r requirements.txt</code></li>
+                <li><strong>模型下载：</strong>首次运行需要下载约 400MB 模型</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        async function checkAPI() {
+            const status = document.getElementById('status');
+            status.className = 'status warning';
+            status.innerHTML = '<strong>⏳ 正在检测 API 服务...</strong>';
+
+            try {
+                const response = await fetch('http://localhost:8000/health');
+                if (response.ok) {
+                    const data = await response.json();
+                    status.className = 'status success';
+                    status.innerHTML = `<strong>✅ API 服务运行正常！</strong><br>访问：<a href="http://localhost:8000/docs" target="_blank">http://localhost:8000/docs</a>`;
+                } else {
+                    throw new Error('Service not responding');
+                }
+            } catch (error) {
+                status.className = 'status error';
+                status.innerHTML = '<strong>❌ API 服务未启动</strong><br>请运行：<code>python cli.py api</code>';
+            }
+        }
+
+        async function checkWeb() {
+            const status = document.getElementById('status');
+            status.className = 'status warning';
+            status.innerHTML = '<strong>⏳ 正在检测 Web 服务...</strong>';
+
+            try {
+                const response = await fetch('http://localhost:8501');
+                if (response.ok) {
+                    status.className = 'status success';
+                    status.innerHTML = `<strong>✅ Web 服务运行正常！</strong><br>访问：<a href="http://localhost:8501" target="_blank">http://localhost:8501</a>`;
+                    setTimeout(() => {
+                        window.open('http://localhost:8501', '_blank');
+                    }, 1000);
+                } else {
+                    throw new Error('Service not responding');
+                }
+            } catch (error) {
+                status.className = 'status error';
+                status.innerHTML = '<strong>❌ Web 服务未启动</strong><br>请运行：<code>python -m streamlit run web/app.py</code>';
+            }
+        }
+
+        // 页面加载时自动检测
+        window.onload = function() {
+            setTimeout(checkWeb, 1000);
+        };
+    </script>
+</body>
+</html>

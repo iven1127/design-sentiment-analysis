@@ -41,8 +41,8 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="小红书情感分析 API",
-    description="小红书内容爬取与情感分析服务",
+    title="设计舆情分析 API",
+    description="设计内容舆情分析服务",
     version="1.0.0",
     lifespan=lifespan,
 )
@@ -297,7 +297,7 @@ async def run_scraping_task(
 async def root():
     """根路径"""
     return {
-        "name": "小红书情感分析 API",
+        "name": "设计舆情分析 API",
         "version": "1.0.0",
         "status": "running",
     }

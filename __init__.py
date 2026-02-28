@@ -1,5 +1,5 @@
 """
-小红书舆情分析工具
-Sentiment Analysis Tool for Xiaohongshu
+设计舆情分析
+Design Sentiment Analysis Tool
 """
 __version__ = "1.0.0"
