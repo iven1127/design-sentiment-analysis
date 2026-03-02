@@ -19,7 +19,7 @@ data/
 models/
 .env
 .playwright/
-.streamlit/
+# .streamlit/  # 注释掉，Streamlit Cloud需要此配置
 *.pth
 *.pt
 *.ckpt
