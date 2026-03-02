@@ -426,7 +426,7 @@ if st.session_state.search_results:
 
 else:
     # 空状态
-    st.info("👈 请在左侧输入关键词并点击"开始搜索"")
+    st.info("👈 请在左侧输入关键词并点击【开始搜索】")
 
     col1, col2 = st.columns(2)
 
