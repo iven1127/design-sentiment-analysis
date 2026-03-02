@@ -1,13 +1,15 @@
-python-dotenv==1.0.0
-sqlalchemy==2.0.23
-requests==2.31.0
-fastapi==0.109.0
-uvicorn==0.27.0
-streamlit==1.35.0
-playwright==1.41.0
-apscheduler==3.10.4
-transformers==4.36.0
-torch==2.1.0
-plotly==5.18.0
-pyyaml==6.0.1
-pytest==8.0.0
+# 精简版依赖 - 用于Streamlit Cloud部署
+# 如果完整版部署失败，使用此文件替换 requirements.txt
+
+streamlit>=1.35.0
+pandas>=2.0.0
+plotly>=5.18.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+pyyaml>=6.0.1
+
+# 注意：以下功能在精简版中被禁用
+# - AI情感分析 (transformers + torch)
+# - 真实数据爬取 (playwright)
+#
+# 应用将以演示模式运行，使用模拟数据
